@@ -5,10 +5,27 @@ class SearchForm extends Component {
     searchInputValue: "",
   };
 
+  onSearchInputChange = (e) => {
+    this.setState({ searchInputValue: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.performSearch(this.state.searchInputValue);
+    this.setState({ searchInputValue: "" });
+  };
+
   render() {
     return (
-      <form className="search-form">
-        <input type="search" name="search" placeholder="Search" required />
+      <form className="search-form" onSubmit={this.handleSubmit}>
+        <input
+          type="search"
+          name="search"
+          placeholder="Search"
+          value={this.state.searchInputValue}
+          onChange={this.onSearchInputChange}
+          required
+        />
         <button type="submit" className="search-button">
           <svg
             fill="#fff"
