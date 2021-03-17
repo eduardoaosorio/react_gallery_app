@@ -15,7 +15,10 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const query = "sunset";
+    this.performSearch();
+  }
+
+  performSearch = (query = "sunset") => {
     const apiUrl = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
 
     fetch(apiUrl)
@@ -25,25 +28,27 @@ class App extends Component {
       })
       .then((data) => {
         const photosData = data.photos.photo;
-        const photoUrls = photosData.map(
-          (photoObj) =>
-            `https://live.staticflickr.com/${photoObj.server}/${photoObj.id}_${photoObj.secret}_n.jpg`
-        );
-        this.setState({ photos: photoUrls, loading: false });
+        const photos = photosData.map((photoObj) => ({
+          id: photoObj.id,
+          url: `https://live.staticflickr.com/${photoObj.server}/${photoObj.id}_${photoObj.secret}_n.jpg`,
+        }));
+        this.setState({ photos, loading: false });
       })
       .catch((err) => console.log("Something went wrong:\n", err));
-  }
-
-  performSearch = () => {};
+  };
 
   render() {
     return (
       <div className="container">
-        <SearchForm />
+        <SearchForm performSearch={this.performSearch} />
 
         <Nav />
 
-        <PhotoContainer />
+        {this.state.loading ? (
+          <p>Loading...</p>
+        ) : (
+          <PhotoContainer photos={this.state.photos} />
+        )}
       </div>
     );
   }
