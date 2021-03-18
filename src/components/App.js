@@ -8,7 +8,7 @@ import apiKey from "../config";
 import PhotoContainer from "./PhotoContainer";
 import SearchForm from "./SearchForm";
 import Nav from "./Nav";
-import Page404 from "./Page404";
+import PageNotFound from "./PageNotFound";
 
 class App extends Component {
   state = {
@@ -71,7 +71,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route component={Page404} />
+            <Route component={PageNotFound} />
           </Switch>
         </div>
       </BrowserRouter>

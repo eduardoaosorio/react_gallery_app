@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // components
 import Photo from "./Photo";
-import NotFound from "./NotFound";
+import NoResults from "./NoResults";
 
 class PhotoContainer extends Component {
   // if the path is "/", there will be no params and searchQuery will be set to undefined
@@ -39,7 +39,7 @@ class PhotoContainer extends Component {
                 <Photo imgUrl={photo.url} key={photo.id} />
               ))
             ) : (
-              <NotFound />
+              <NoResults />
             )}
           </ul>
         </div>
