@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // api key
 import apiKey from "../config";
@@ -7,6 +8,7 @@ import apiKey from "../config";
 import PhotoContainer from "./PhotoContainer";
 import SearchForm from "./SearchForm";
 import Nav from "./Nav";
+import Page404 from "./Page404";
 
 class App extends Component {
   state = {
@@ -14,11 +16,11 @@ class App extends Component {
     loading: true,
   };
 
-  componentDidMount() {
-    this.performSearch();
-  }
+  // function to fetch data from flickr api, based on a query
+  // query's default value is set to show picture of "glaciar", like when hitting the "/" path
+  performSearch = (query = "glaciar") => {
+    if (!this.state.loading) this.setState({ loading: true });
 
-  performSearch = (query = "sunset") => {
     const apiUrl = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
 
     fetch(apiUrl)
@@ -38,18 +40,41 @@ class App extends Component {
   };
 
   render() {
+    const { photos, loading } = this.state;
     return (
-      <div className="container">
-        <SearchForm performSearch={this.performSearch} />
-
-        <Nav />
-
-        {this.state.loading ? (
-          <p>Loading...</p>
-        ) : (
-          <PhotoContainer photos={this.state.photos} />
-        )}
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <SearchForm />
+          <Nav />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={({ match }) => (
+                <PhotoContainer
+                  // match object contains params which will be used in <PhotoContainer />
+                  match={match}
+                  loading={loading}
+                  photos={photos}
+                  performSearch={this.performSearch}
+                />
+              )}
+            />
+            <Route
+              path="/search/:searchQuery"
+              render={({ match }) => (
+                <PhotoContainer
+                  match={match}
+                  loading={loading}
+                  photos={photos}
+                  performSearch={this.performSearch}
+                />
+              )}
+            />
+            <Route component={Page404} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }

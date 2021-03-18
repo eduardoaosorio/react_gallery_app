@@ -1,5 +1,4 @@
-import React from "react";
-// Page404 component for displaying a user-friendly message when route doesn't exist
+// Page404 component for displaying a user-friendly message when path doesn't exist
 const Page404 = () => {
   return (
     <div>

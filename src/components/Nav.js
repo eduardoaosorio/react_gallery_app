@@ -1,16 +1,18 @@
+import { NavLink } from "react-router-dom";
+
 // Nav component for the apps navigation links
 const Nav = (props) => {
   return (
     <nav className="main-nav">
       <ul>
         <li>
-          <a href="#">Cats</a>
+          <NavLink to="/search/forest">Forest</NavLink>
         </li>
         <li>
-          <a href="#">Dogs</a>
+          <NavLink to="/search/beach">Beach</NavLink>
         </li>
         <li>
-          <a href="#">Computers</a>
+          <NavLink to="/search/desert">Desert</NavLink>
         </li>
       </ul>
     </nav>

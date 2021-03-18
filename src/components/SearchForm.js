@@ -1,17 +1,20 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 class SearchForm extends Component {
   state = {
     searchInputValue: "",
   };
 
+  // handler to update searchInputValue
   onSearchInputChange = (e) => {
     this.setState({ searchInputValue: e.target.value });
   };
 
+  // handler to update path based on search input and reset searchInputValue
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.performSearch(this.state.searchInputValue);
+    this.props.history.push(`/search/${this.state.searchInputValue}`);
     this.setState({ searchInputValue: "" });
   };
 
@@ -43,4 +46,4 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);
