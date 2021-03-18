@@ -1,12 +1,22 @@
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
 body {
   text-align: center;
-  font-family: "Open Sans", sans-serif;
-  color: #3f4850;
+  font-family: "Inter var", sans-serif;
+  color: black;
 }
 
 h2 {
   font-size: 2em;
-  margin: 52px 0 40px;
+  margin: 20px 0 40px;
   text-transform: capitalize;
 }
 
@@ -27,10 +37,9 @@ a {
 
 .search-form button {
   outline: none;
-  background-color: #438bbd;
+  background-color: black;
   border: none;
   padding: 0px 15px;
-  border-radius: 0 0.35em 0.35em 0;
   cursor: pointer;
 }
 
@@ -41,8 +50,18 @@ input {
   padding: 10px 15px;
   border: 3px solid #d7dbdf;
   border-right: none;
-  border-radius: 0.35em 0 0 0.35em;
   outline: none;
+}
+
+.main-nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main-nav li {
+  margin: 10px;
+  width: 100px;
 }
 
 .main-nav li {
@@ -52,8 +71,7 @@ input {
 
 .main-nav a {
   display: block;
-  background: #438bbd;
-  border-radius: 3px;
+  background: black;
   padding: 5px;
   color: #fff;
 }
@@ -61,20 +79,20 @@ input {
 .main-nav .active,
 .main-nav a:hover,
 .search-form button:hover {
-  background-color: #275270;
+  background-color: grey;
 }
 
 .photo-container ul {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   -ms-align-items: flex-start;
   align-items: flex-start;
 }
 
 .photo-container ul li {
-  width: 220px;
-  height: 165px;
+  width: 320px;
+  height: 240px;
   overflow: hidden;
   margin-bottom: 15px;
 }
@@ -109,7 +127,7 @@ input {
   }
 
   .container {
-    max-width: 960px;
+    max-width: 1200px;
     margin: auto;
   }
 
@@ -121,5 +139,9 @@ input {
   .main-nav li {
     margin: 10px;
     width: 100px;
+  }
+
+  .photo-container ul li {
+    margin-bottom: 30px;
   }
 }
