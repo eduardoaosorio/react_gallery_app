@@ -1,3 +1,16 @@
+# react_gallery_app
+
+## Description
+
+Image gallery single-page application built using React. It fetches data from the Flickr API and displays images.
+
+## Technologies
+
+- JavaScript
+- React
+- React Router
+- CSS
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
